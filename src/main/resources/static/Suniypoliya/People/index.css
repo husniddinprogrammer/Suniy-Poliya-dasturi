@@ -1,0 +1,52 @@
+#xushKelibsiz{
+  background-color: rgba(255, 255, 255, 0.829);
+  margin: auto;
+  width: 60%;
+}
+#xushKelibsizRasm{
+  margin-top: 5%;
+  margin-left: 25%;
+  width: 50%;
+  height: 50%;  
+}
+#xushKelibsiz #span1 {
+  background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(3, 255, 108));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#xushKelibsiz #span2 {
+  background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(3, 255, 108));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+h4{
+  text-align: center;
+}
+#xushKelibsiz p{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+#buyurtmaTugma{
+  margin-left: 30%;
+  border-radius: 5%;
+  padding: 3px;
+  border: none;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(255, 255, 255);
+  width: 40%;
+  background-color:rgb(255, 0, 0);
+}
+@media screen and (max-width: 1000px) {
+  #xushKelibsiz{
+    background-color: rgba(255, 255, 255, 0.829);
+    margin: auto;
+    width: 60%; 
+    height: auto !important;
+  }
+  #buyurtmaTugma{
+    height: auto !important;   
+  }
+}

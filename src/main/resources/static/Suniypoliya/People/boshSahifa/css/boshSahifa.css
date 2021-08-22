@@ -1,0 +1,129 @@
+/*Xammasi uchun boshlandi */
+body {
+    font-family: "Lato", sans-serif;
+  }
+  
+  .sidepanel {
+    
+    position: fixed;
+    left: -320px;
+    z-index: 1;
+    height: auto;
+    top: 0;
+   
+    background-color: none;
+    background-image: url("../../image/poliya2.jpg");
+    background-size: 100% auto;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    font-style: normal;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-bottom-right-radius: 10%;
+    border: 1px solid white;
+    box-shadow: 1px 1px 1px rgb(163, 163, 163);
+  }
+  
+  .sidepanel a {
+    padding: 10px 5px 5px 25px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    font-family: sans-serif;
+  }
+  
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+  
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    width: 5%;
+    display: inline-block;
+  }
+  
+  .openbtn:hover {
+    background-color: #eee;
+  }
+  
+  body {
+    background-color: none;
+    background-size: 100% auto;
+    font-weight: bold;
+    font-style: normal;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  #bannerQismi {
+
+    text-align: center;
+    font-weight: bold;
+    font-style: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+  }
+  
+  #bannerYozuv {
+    margin-top: 10px;
+    display: inline-block;
+    width: 94% !important;
+    font-size: 30px;
+  }
+  
+  .fa-futbol {
+    font-size: 30px;
+    background-color: rgb(0, 255, 64);
+    border-radius: 50%;
+  }
+  
+  #bannerYozuv #span1 {
+    background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(3, 255, 108));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  #bannerYozuv #span2 {
+    background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(3, 255, 108));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  @media screen and (min-width: 1000px) {
+  
+    body {
+      background-image: url("../../image/asosiy\ rasm.jpg");
+    }
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .openbtn {
+      width: 15%;
+    }
+  
+    #bannerYozuv {
+      width: 83% !important;
+    }
+  
+    body {
+      background-image: url("../../image/poliya1.jpg");
+    }
+  }
+  

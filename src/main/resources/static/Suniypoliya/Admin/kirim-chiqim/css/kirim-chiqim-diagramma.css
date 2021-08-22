@@ -1,0 +1,35 @@
+.hisobot{
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow:5px 5px 5px 5px rgb(185, 184, 184);
+  font-style: bold;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.hisobot p {
+  margin-left: 4px;
+}
+.hisobot .kutilyotgan{
+  color: rgb(0, 153, 255);
+}
+.hisobot .kirim {
+  color: rgb(11, 245, 23);
+}
+.hisobot .chiqim {
+  color: rgb(255, 0, 0);
+}
+.hisobot .foydaHisobot{
+  border-radius: 12px;
+  background-color: rgb(21, 255, 0);
+}
+.hisobot .foydaHisobot .foyda{
+  color: rgb(255, 255, 255);
+}
+.hisobot  h4{
+  color: rgb(255, 174, 0);
+  text-align: center;
+  font-style: bold;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

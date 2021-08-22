@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, severny admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, my admin design, my admin dashboard bootstrap 4 dashboard template">
+    <meta name="description"
+        content="My Admin is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Kun tartibi</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/myadmin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <script src="../../Service/http-service.js"></script>
+	<script src="../../Service/authCheck.js"></script>
+	<script src="../../Service/direktor-guard.js"></script>
+    <link rel="stylesheet" href="../poliyaJadvali/css/poliyaJadval.css">
+    <style>
+        #sanarang {
+            background-color: rgb(14, 0, 216);
+            text-align: center;
+            color: white;
+            border: 1px solid white;
+        }
+
+        #soat {
+            background-color: rgb(0, 190, 10);
+            text-align: center;
+            color: white;
+            border: 1px solid rgb(17, 199, 0);
+            padding-top: 2px;
+            padding-bottom: 3px;
+        }
+
+        #tuliqvaqtrasm {
+            border: 1px solid blue;
+        }
+
+        #tbody td {
+            border: 1px solid blue;
+            text-align: center;
+        }
+    .buy {
+            position: relative;
+        }
+
+        .malumot {
+            position: absolute;
+            display: none;
+            min-width: 350px;
+            background-color: white;
+            box-shadow: 1px 1px 4px 2px gray;
+            padding: 20px;
+            z-index: 999;
+
+        }
+
+        .buy:hover .malumot {
+            display: inline-flex;
+        }
+    </style>
+</head>
+
+<body onload="yuklash()">
+    <!--
+        Tulov qilish modali boshlandi
+    -->
+    <div class="modal" id="tulovModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Tulov qilish</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form name="tulovForm">
+                        <p id="qanchaTulangan" class="col-12 col-md-12"></p>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="naqd">Naqd:</label>
+                            <input type="number" oninput="yozilyapti()" class="form-control" id="naqd" placeholder="0"
+                                name="naqd" required>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="plastik">Plastik:</label>
+                            <input type="number" class="form-control" onchange="yozilyapti()" oninput="yozilyapti()"
+                                id="plastik" placeholder="0" name="plastik" required>
+                        </div>
+                        <p id="jamiSumma" class="col-12 col-md-12"></p>
+                        <p id="ogohlantirish" class="col-12 col-md-12"></p>
+                    </form>
+                </div>
+                <!--
+                    Mijoz formasi tugadi
+                -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" disabled id="tulovTugma" class="btn btn-primary" onclick="tulovQilish()">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Tulov qo'shish
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiqish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        Tulov qilish modali tugadi
+    -->
+    <!--
+        Buyurtma qushish oynasi boshlandi
+    -->
+    <div class="modal" id="createModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Buyurtma berish</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form name="createForm">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="poliya">Poliya nomi</label>
+                            <input type="text" name="poliyanomi" id="poliyanomi" class="form-control"
+                                placeholder="Poliya nomi" disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="sana">Sana</label>
+                            <input type="text" name="sana" id="sana" class="form-control" placeholder="0000-00-00"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="boshvaqti">Boshlanish vaqti</label>
+                            <input type="text" name="boshvaqti" id="boshvaqti" class="form-control" placeholder="00:00"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="tugvaqti">Tugash vaqti</label>
+                            <input type="text" name="tugvaqti" id="tugvaqti" class="form-control" placeholder="00:00"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="narxi col-12 col-md-6">Narxi</label>
+                            <input type="number" name="narxi" id="inputNarxi" oninput="inputyoz()" class="form-control" placeholder="0">
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="izoh">Izoh kiriting</label>
+                            <input type="text" name="izoh" id="inputIzoh" class="form-control" oninput="inputyoz()" placeholder="Izoh">
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div id="createMijozHeight" class="col-12 col-md-6">
+                            <form name="createMijozForm">
+                                <div class="form-group">
+                                    <label for="name">Mijoz Fioni kiriting:</label>
+                                    <input type="text" class="form-control" id="searchInput" oninput="mijozqidir()"
+                                        placeholder="Mijoz ismi" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">Mijoz raqamini kiriting:</label>
+                                    <input type="text" class="form-control" name="number" oninput="mijozqidir()" id="searchNumber"
+                                        placeholder="Mijoz nomeri" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">Mijozga izoh kiriting:</label>
+                                    <input type="text" class="form-control" name="izoh" id="izoh"
+                                        placeholder="Izoh kiriting" required>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="mijozAdd" disabled onclick="mijozadd()">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Mijoz qo'shish
+                                </button>
+                            </form>
+                        </div>
+                        <div id="selectHeight" class="col-12 col-md-6" style="overflow: hidden;">
+                            <table id="selectMijoz" class="table" style="display:block;overflow-y: auto;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Ism</th>
+                                        <th scope="col">Numer</th>
+                                        <th scope="col"><input type="checkbox" class="form-check-input" checked></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--
+                    Mijoz formasi tugadi
+                -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="buyurtmaQushish" disabled='true' onclick="add()" class="btn btn-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Buyurtma berish
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiqish</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--
+        Buyurtma qushish formasi tugadi.
+    -->
+
+    <!--
+        Buyurtma haqida formasi boshlandi
+    -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Buyurtma haqida</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form name="aboutForm">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="ism">Mijoz ismi</label>
+                            <input type="text" name="ism" id="ism" class="form-control" placeholder="Mijoz ismi"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="nomer">Mijoz nomeri</label>
+                            <input type="text" name="nomer" id="nomer" class="form-control" placeholder="Mijoz nomeri"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="sana">Sana</label>
+                            <input type="text" name="sana" id="sana" class="form-control" placeholder="0000-00-00"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="boshvaqti">Boshlanish vaqti</label>
+                            <input type="text" name="boshvaqti" id="boshvaqti" class="form-control" placeholder="00:00"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="tugvaqti">Tugash vaqti</label>
+                            <input type="text" name="tugvaqti" id="tugvaqti" class="form-control" placeholder="00:00"
+                                disabled>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="narxi">Narxi</label>
+                            <input type="number" name="narxi" id="narxi" class="form-control" placeholder="0" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="izoh">Izoh kiriting</label>
+                            <input type="text" name="izoh" id="izoh" class="form-control" placeholder="Izoh" disabled>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                    Mijoz formasi tugadi
+                -->
+                <!-- Modal footer -->
+                <form name="aboutFormBekor">
+                    <div class="modal-footer">
+                        <!--data-dismiss="modal" data-target="#createTulovModal" data-toggle="modal"-->
+                        <button type="button" class="btn btn-primary" onclick="bekorqil()" name="bekorQilish">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Buyurtmani bekor qilish
+                        </button>
+                        <span id="buyurtmaTulovQilish">
+
+                        </span>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiqish</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--
+        Buyurtma haqida formasi tugadi
+    -->
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
+            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg "
+                    href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i
+                        class="ti-menu"></i></a>
+                <div class="top-left-part"><a class="logo" href="dashboard.html"><i
+                            class="glyphicon glyphicon-fire"></i>&nbsp;<span class="hidden-xs">Admin Panel</span></a>
+                </div>
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs hidden-lg waves-effect waves-light"><i
+                                class="ti-arrow-circle-left ti-menu"></i></a></li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <a class="profile-pic" href="#"> <img src="images/users/hritik.jpg" alt="user-img" width="36"
+                                class="img-circle"><b class="hidden-xs">Admin</b> </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div class="navbar-default sidebar nicescroll" role="navigation">
+            <div class="sidebar-nav navbar-collapse ">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="ti-search"></i> </button>
+                            </span>
+                        </div>
+                    </li>
+                    <li id="menuDashboard" style="display: none;">
+                        <a href="dashboard.html"  class="waves-effect"><i class="glyphicon glyphicon-fire fa-fw"></i>
+                            Statistika</a>
+                    </li>
+                    <li id="menuProfile" style="display: none;">
+                        <a href="profile.html" class="waves-effect"><i class="ti-user fa-fw"></i>Profile</a>
+                    </li>
+                    <li id="menuMijozlarTable" style="display: none;">
+                        <a href="mijozlar-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Mijozlar jadvali</a>
+                    </li>
+                    <li id="menuPoliyaTable" style="display: none;">
+                        <a href="poliya-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Poliyalar jadvali</a>
+                    </li>
+                    <li id="menuBuyurtmaTable" style="display: none;">
+                        <a href="buyurtmalar-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Buyurtmalar jadvali</a>
+                    </li>
+                    <li id="menuKirimChiqim" style="display: none;">
+                        <a href="kirim-chiqim.html"  class="waves-effect"><i class="ti-layout fa-fw"></i>Kirim-Chiqim</a>
+                    </li>
+                    <li id="menuXabarTable" style="display: none;">
+                        <a href="xabar-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Xabarlar</a>
+                    </li>
+                    <li id="menuMapGoogle" style="display: none;">
+                        <a href="map-google.html" class="waves-effect"><i class="ti-location-pin fa-fw"></i> Xaritadagi manzil</a>
+                    </li>
+                    <li id="Chiqish">
+                        <a href="../../People/index.html" class="waves-effect"> Chiqish</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-12">
+                        <h4 class="page-title" id="poliyanomi"></h4>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Statistika</a>
+                            </li>
+                            <li class="active" id="poliyanomijadvali"></li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3>Poliyalar kun tartibi</h3>
+                            <p class="text-muted">Kun tartibi<code>.table</code></p><span
+                                style="display: inline-block;">&nbsp;&nbsp;&nbsp;
+                                Vaqt oraligini tanlang:<select onchange="vaqtsaralash()" id="boshvaqtiselect">
+                                </select> dan&nbsp;&nbsp;&nbsp;
+                                <select onchange="vaqtsaralash()" id="tugvaqtiselect">
+                                </select> gacha
+                            </span>
+                            <div class="table-responsive">
+                                <table class="table" id="alltable" style="border: 2px solid blue;">
+                                    <thead id="vaqtOraligi">
+                                    </thead>
+                                    <tbody id="tbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!--Nice scroll JavaScript -->
+    <script src="js/jquery.nicescroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/myadmin.js"></script>
+    <script src="../../Service/poliya-service.js"></script>
+    <script src="../../Service/buyurtma-service.js"></script>]
+    <script src="../../Service/mijoz-service.js"></script>
+    <script src="../../Service/tulov-qilish-service.js"></script>
+    <script src="../poliyaJadvali/js/poliya-jadvali.js"></script>
+    <script src="../menu/js/menu.js"></script>
+</body>
+
+</html>

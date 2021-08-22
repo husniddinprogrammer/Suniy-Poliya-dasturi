@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 4 admin, bootstrap 4, css3 dashboard, bootstrap 4 dashboard, severny admin bootstrap 4 dashboard, frontend, responsive bootstrap 4 admin template, my admin design, my admin dashboard bootstrap 4 dashboard template">
+    <meta name="description"
+        content="My Admin is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Poliyalar</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/myadmin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Menu CSS -->
+    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <script src="../../Service/http-service.js"></script>
+	<script src="../../Service/authCheck.js"></script>
+	<script src="../../Service/direktor-guard.js"></script>
+</head>
+
+<body onload="yuklash()">
+    <!--
+        Admin qushish boshlandi
+    -->
+    <div class="modal" id="createAdminModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Admin qo'shish</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form name="createAdminForm">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="username">Usernameni kiriting:</label>
+                            <input type="text" oninput="adminYozish()" class="form-control" id="username"
+                                placeholder="Usernameni kiriting" name="username" required>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="name">Ismni kiriting:</label>
+                            <input type="text" oninput="adminYozish()" class="form-control" id="name"
+                                placeholder="Ismni kiriting" name="name" required>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="number">Nomerni kiriting:</label>
+                            <input type="text" oninput="adminYozish()" class="form-control" id="number"
+                                placeholder="Nomerni kiriting" name="number" required>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="password">Parolni kiriting:</label>
+                            <input type="text" oninput="adminYozish()" class="form-control" id="password"
+                                placeholder="Parolni kiriting" name="password" required>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                    Mijoz formasi tugadi
+                -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="adminQushish" disabled class="btn btn-primary" onclick="adminQushish()">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Qo'shish
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiqish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        Admin qushish tugadi
+    -->
+    <!--
+        Poliya qushish boshlandi
+    -->
+    <div class="modal" id="createModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Poliya qo'shish</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form name="createForm">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="name">Poliya Nomini Kiriting:</label>
+                            <input type="text" oninput="poliyaQushishYozish()" class="form-control" id="name"
+                                placeholder="Poliya nomi " name="name" required>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="cost">Poliya Narxini Kiriting:</label>
+                            <input type="number" oninput="poliyaQushishYozish()" class="form-control" id="cost"
+                                placeholder="Narxi " name="cost" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="manzil">Poliya Manzili Kiriting:</label>
+                            <input type="text" oninput="poliyaQushishYozish()" class="form-control" name="manzil"
+                                id="manzil" placeholder="Manzil" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="googleMap">Google map manzil:</label>
+                            <input type="text" oninput="poliyaQushishYozish()" class="form-control" name="googleMap"
+                                id="googleMap" placeholder="Google map manzil" required>
+                        </div>
+                        <div class="from-group">
+                            <label for="adminSelect">Adminni tanlang:</label>
+                            <select id="adminSelect" name="adminSelect">
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                    Mijoz formasi tugadi
+                -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" disabled='true' id="poliyaQushish" class="btn btn-primary" onclick="add()">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Qo'shish
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiqish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        Poliya qushish tugadi
+    -->
+    <!--
+        Poliya o'zgartirish boshlandi     
+    --->
+    <div class="modal" id="updateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Poliyani o'zgartirish</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form name="updateForm">
+                        <div class="form-group col-12 col-md-6">
+                            <label for="id">Poliya Id</label>
+                            <input type="text" class="form-control" id="id" placeholder="Id" name="id" disabled
+                                required>
+                        </div>
+                        <div class="form-group col-12 col-md-6">
+                            <label for="name">Poliya Nomini Kiriting:</label>
+                            <input type="text" oninput="poliyaUzgartirishYozish()" class="form-control" id="name"
+                                placeholder="Poliya nomi " name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cost">Poliya Narxini Kiriting:</label>
+                            <input type="number" oninput="poliyaUzgartirishYozish()" class="form-control" id="cost"
+                                placeholder="Narxi " name="cost" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="manzil">Poliya Manzili Kiriting:</label>
+                            <input type="text" oninput="poliyaUzgartirishYozish()" class="form-control" name="manzil"
+                                id="manzil" placeholder="Manzil" required>
+                        </div>
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label for="googleMap">Google map manzil:</label>
+                            <input type="text" oninput="poliyaUzgartirishYozish()" class="form-control" name="googleMap"
+                                id="googleMap" placeholder="Google map manzil" required>
+                        </div>
+                        <div class="from-group">
+                            <label for="adminSelectUzgar">Adminni tanlang:</label>
+                            <select id="adminSelectUzgar" name="adminSelectUzgar">
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <!--
+                    Mijoz formasi tugadi
+                -->
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" id="poliyaUzgartirish" class="btn btn-primary" onclick="update()">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Qo'shish
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiqish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        Poliya o'zgartirish tugadi
+    -->
+
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
+            <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg "
+                    href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i
+                        class="ti-menu"></i></a>
+                <div class="top-left-part"><a class="logo" href="dashboard.html"><i
+                            class="glyphicon glyphicon-fire"></i>&nbsp;<span class="hidden-xs">Admin Panel</span></a>
+                </div>
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li><a href="javascript:void(0)" class="open-close hidden-xs hidden-lg waves-effect waves-light"><i
+                                class="ti-arrow-circle-left ti-menu"></i></a></li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <a class="profile-pic" href="#"> <img src="images/users/hritik.jpg" alt="user-img" width="36"
+                                class="img-circle"><b class="hidden-xs">Admin</b> </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div class="navbar-default sidebar nicescroll" role="navigation">
+            <div class="sidebar-nav navbar-collapse ">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="ti-search"></i> </button>
+                            </span>
+                        </div>
+                    </li>
+                    <li id="menuDashboard" style="display: none;">
+                        <a href="dashboard.html"  class="waves-effect"><i class="glyphicon glyphicon-fire fa-fw"></i>
+                            Statistika</a>
+                    </li>
+                    <li id="menuProfile" style="display: none;">
+                        <a href="profile.html" class="waves-effect"><i class="ti-user fa-fw"></i>Profile</a>
+                    </li>
+                    <li id="menuMijozlarTable" style="display: none;">
+                        <a href="mijozlar-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Mijozlar jadvali</a>
+                    </li>
+                    <li id="menuPoliyaTable" style="display: none;">
+                        <a href="poliya-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Poliyalar jadvali</a>
+                    </li>
+                    <li id="menuBuyurtmaTable" style="display: none;">
+                        <a href="buyurtmalar-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Buyurtmalar jadvali</a>
+                    </li>
+                    <li id="menuKirimChiqim" style="display: none;">
+                        <a href="kirim-chiqim.html"  class="waves-effect"><i class="ti-layout fa-fw"></i>Kirim-Chiqim</a>
+                    </li>
+                    <li id="menuXabarTable" style="display: none;">
+                        <a href="xabar-table.html" class="waves-effect"><i class="ti-layout fa-fw"></i>Xabarlar</a>
+                    </li>
+                    <li id="menuMapGoogle" style="display: none;">
+                        <a href="map-google.html" class="waves-effect"><i class="ti-location-pin fa-fw"></i> Xaritadagi manzil</a>
+                    </li>
+                    <li id="Chiqish">
+                        <a href="../../People/index.html" class="waves-effect"> Chiqish</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-12">
+                        <h4 class="page-title">Poliyalar jadvali</h4>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Statistika</a></li>
+                            <li class="active">Poliya jadvali</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <h3>Poliyalar jadvali</h3>
+                            <p class="text-muted"><code>Poliya</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" data-target="#createModal" data-toggle="modal"
+                                    style="background-color:green;color: white;display: none;" class="btn btn-sm rollPoliyaQushish">Poliya
+                                    qo'shish</button>&nbsp;&nbsp;
+                                <button type="button" data-target="#createAdminModal"
+                                    data-toggle="modal" style="background-color:green;color: white;display: none;"
+                                    class="btn btn-sm rollAdminQushish">Admin qo'shish</button></p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <th scope="col">Nomi</th>
+                                        <th scope="col">Manzili</th>
+                                        <th scope="col">Admin</th>
+                                        <th scope="col">Narxi</th>
+                                        <th scope="col">Buyurtma berish</th>
+                                        <th class="rollUpdate" style="display: none;" scope="col">O'zgartirish</th>
+                                        <th class="rollRemove" style="display: none;" scope="col">O'chirish</th>
+                                    </thead>
+                                    <tbody id="tbody">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+
+
+
+
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!--Nice scroll JavaScript -->
+    <script src="js/jquery.nicescroll.js"></script>
+    <!--Wave Effects -->
+    <script src="js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="js/myadmin.js"></script>
+    <script src="../../Service/poliya-service.js"></script>
+    <script src="../../Service/user-service.js"></script>
+    <script src="../poliya/js/poliya-controller.js"></script>
+    <script src="../menu/js/menu.js"></script>
+</body>
+
+</html>

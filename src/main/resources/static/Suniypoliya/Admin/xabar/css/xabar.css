@@ -1,0 +1,71 @@
+/*******************************
+* ACCORDION WITH TOGGLE ICONS
+* Does not work properly if "in" is added after "collapse".
+*******************************/
+.panel-group .panel {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #EEEEEE;
+}
+
+.panel-default > .panel-heading {
+    padding: 0;
+    border-radius: 0;
+    color: #212121;
+    background-color: #FAFAFA;
+    border-color: #EEEEEE;
+}
+#xabarTuriAjratilgan {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 4px;
+    margin-left: 10px;
+    color: white;
+    border-radius: 20%;
+    font-weight: 400;
+}
+
+.panel-title {
+    background-color: rgb(251, 254, 255);
+    font-size: 14px;
+}
+
+.panel-title  a {
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.more-less {
+    float: right;
+    color: #212121;
+}
+
+.panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: #EEEEEE;
+}
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+background-color: #26a69a;
+}
+
+.demo {
+padding-bottom: 110px;
+}
+
+.demo-footer {
+position: fixed;
+bottom: 0;
+width: 100%;
+background-color: #212121;
+text-align: center;
+}
+
+.demo-footer > a {
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+color: #fff;
+}

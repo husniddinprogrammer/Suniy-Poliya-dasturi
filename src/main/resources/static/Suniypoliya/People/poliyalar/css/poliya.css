@@ -1,0 +1,53 @@
+#poliyalar{
+    margin: auto;
+}
+.poliyaCard{
+   width: 90%;
+   margin: auto;
+   background: rgba(255, 255, 255, 0.89);
+   height: 100%;
+   text-align: center;
+}
+#poliyaCardImage{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 30%;
+}
+.poliyaCard h5{
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background: -webkit-linear-gradient(rgb(0, 0, 0), rgb(3, 255, 108));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.malumotlar{
+    font-weight: normal;
+    font-family: sans-serif;
+    font-size: 10x !important;
+}
+.xarita{
+    margin-top: 2px;
+    width: 90%;
+    margin-left: 5%;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 4px;
+    background-color:rgb(0, 89, 255);
+    color: white;
+}
+.buyurtma{
+    margin-top: 4px;
+    width: 90%;
+    margin-left: 5%;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 4px;
+    background-color:rgb(0, 255, 34);
+    color: white;
+}
